@@ -1,9 +1,19 @@
-const { readFileSync, writeFileSync } = require('fs')
+const { readFileSync, writeFileSync, existsSync } = require('fs')
 //const dataJson = require('./herois.json')
 
 class Database {
     constructor() {
         this.NOME_ARQUIVO = 'herois.json'
+    }
+
+    async arquivoExists(){
+        return await existsSync(`./${this.NOME_ARQUIVO}`)
+    }
+
+    async criarArquivoJson(){
+        if (await writeFileSync('./herois.json','[]')){
+            return true
+        }
     }
     
     async obterDadosArquivo() {   
@@ -30,6 +40,10 @@ class Database {
         if(this.escreverArquivo([...dados,heroi])){
             return heroi.id
         }
+    }
+
+    async removerHeroiPorId(id){
+        return false
     }
 
     async listar(id) {

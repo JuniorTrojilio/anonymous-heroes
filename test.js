@@ -8,7 +8,14 @@ const DEFAULT_ITEM_CADASTRAR = {
 
 describe('Suite de manipulação de heróis', ()=>{
     before(async ()=>{
+        await database.criarArquivoJson()
         await database.cadastrar(DEFAULT_ITEM_CADASTRAR) 
+    })
+
+    it('O arquivo Json chamado herois.json deve existir', async ()=>{
+        expected = true
+        const result = await database.arquivoExists()
+        deepEqual(result, true)
     })
 
     it('Deve pesquisar um herói usando arquivos', async ()=>{
@@ -22,5 +29,11 @@ describe('Suite de manipulação de heróis', ()=>{
         const resultado = await database.cadastrar(DEFAULT_ITEM_CADASTRAR)
         const [actual] = await database.listar(resultado)
         deepEqual(actual, expected)
+    })
+
+    it('Deve remover um heroi, usando id', async ()=>{
+        const expected = true
+        const result = await database.removerHeroiPorId(DEFAULT_ITEM_CADASTRAR.id)
+        deepEqual(resultado, expected)
     })
 })
