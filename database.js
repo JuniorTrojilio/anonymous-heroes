@@ -6,7 +6,7 @@ class Database {
         this.NOME_ARQUIVO = 'herois.json'
     }
     
-    async obterDadosArquivo(heroi) {
+    async obterDadosArquivo() {   
         return JSON.parse((await readFileSync(this.NOME_ARQUIVO, 'utf8')).toString())
     }
 
@@ -16,7 +16,7 @@ class Database {
     }
 
     async cadastrar(heroi){
-        const dados = await this.obterDadosArquivo()
+        const dados = (await this.obterDadosArquivo())
         let { id } = heroi
 
         dados.forEach(element => {
