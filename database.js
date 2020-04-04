@@ -1,4 +1,4 @@
-const { readFileSync, writeFileSync, existsSync } = require('fs')
+const { readFileSync, writeFileSync, existsSync, unlinkSync } = require('fs')
 //const dataJson = require('./herois.json')
 
 class Database {
@@ -43,7 +43,18 @@ class Database {
     }
 
     async removerHeroiPorId(id){
-        return false
+        const dados = await this.obterDadosArquivo()
+        const indice = dados.findIndex(item => item.id === parseInt(id))
+        if(indice === -1){
+            throw Error('Este usuário não existe')
+        }
+        dados.splice(indice, 1)
+        return await this.escreverArquivo(dados)
+    }
+
+    async deletarArquivoJson(){
+        await unlinkSync(`./${this.NOME_ARQUIVO}`)
+        return !(await existsSync(`./${this.NOME_ARQUIVO}`))
     }
 
     async listar(id) {

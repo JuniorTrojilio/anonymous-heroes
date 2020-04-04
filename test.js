@@ -33,7 +33,13 @@ describe('Suite de manipulação de heróis', ()=>{
 
     it('Deve remover um heroi, usando id', async ()=>{
         const expected = true
-        const result = await database.removerHeroiPorId(DEFAULT_ITEM_CADASTRAR.id)
+        const resultado = await database.removerHeroiPorId(DEFAULT_ITEM_CADASTRAR.id)
+        deepEqual(resultado, expected)
+    })
+
+    it('Deve apagar o arquivo herois.json', async ()=>{
+        const expected = true
+        const resultado = await database.deletarArquivoJson()
         deepEqual(resultado, expected)
     })
 })
