@@ -33,12 +33,17 @@ class Database {
             if (element.id === id){
                 id++
             }
-        });
+        })
 
-        heroi.id = id
+        const novoId = id
+        const heroiComId = {
+            id : novoId,
+            name : heroi.name,
+            power : heroi.power
+        }
 
-        if(this.escreverArquivo([...dados,heroi])){
-            return heroi.id
+        if(this.escreverArquivo([...dados, heroiComId])){
+            return heroiComId.id
         }
     }
 
@@ -46,7 +51,7 @@ class Database {
         const dados = await this.obterDadosArquivo()
         const indice = dados.findIndex(item => item.id === parseInt(id))
         if(indice === -1){
-            throw Error('Este usuário não existe')
+            throw Error('Este herói não existe')
         }
         dados.splice(indice, 1)
         return await this.escreverArquivo(dados)
@@ -55,6 +60,18 @@ class Database {
     async deletarArquivoJson(){
         await unlinkSync(`./${this.NOME_ARQUIVO}`)
         return !(await existsSync(`./${this.NOME_ARQUIVO}`))
+    }
+
+    async atualizarHeroi(id, novoHeroi){
+        const dados = await this.obterDadosArquivo()
+        const indice = dados.findIndex(item => item.id === parseInt(id))
+        if(indice === -1){
+            throw Error('Este herói não existe')
+        }
+
+        dados.splice(indice, 1,novoHeroi)
+        await this.escreverArquivo(dados)
+        return dados[0]   
     }
 
     async listar(id) {
