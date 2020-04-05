@@ -27,7 +27,7 @@ class Database {
 
     async cadastrar(heroi){
         const dados = (await this.obterDadosArquivo())
-        let { id } = heroi
+        let {id} = heroi
 
         dados.forEach(element => {
             if (element.id === id){
