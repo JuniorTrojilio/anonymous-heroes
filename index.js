@@ -26,14 +26,14 @@ async function main() {
             if (resultado === 0 || resultado > 0) {
                 console.log(chalk.green(`🦸‍♂️ Herói cadastrado com sucesso! ID:${resultado}`))
             } else {
-                console.error('Herói não cadastrado!')
+                console.error(chalk.red('Herói não cadastrado!'))
             }
         }
 
         if (commander.listar) {
             const resultado = await database.listar(heroi.id)
             if (!resultado[0]) {
-                console.log(`[Não localizado nenhum herói com o id : ${heroi.id}]`)
+                console.log(chalk.red(`[Não localizado nenhum herói com o id : ${chalk.green(heroi.id)}]`))
                 return;
             } else {
                 console.log(resultado)
@@ -43,10 +43,10 @@ async function main() {
         if (commander.remover) {
             const resultado = await database.removerHeroiPorId(heroi.id)
             if (!resultado) {
-                console.log(`[Não localizado nenhum herói com o id : ${heroi.id}]`)
+                console.log(chalk.red(`[Não localizado nenhum herói com o id : ${heroi.id}]`))
                 return;
             } else {
-                console.log(`O Herói com id: ${heroi.id}, foi removido com sucesso!`)
+                console.log(chalk.blue(`O Herói com id: ${chalk.green(heroi.id)}, foi removido com sucesso!`))
             }
         }
     } catch (error) {
