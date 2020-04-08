@@ -48,9 +48,9 @@ describe('Suite de manipulação de heróis', ()=>{
         deepEqual(resultado, expected)
     })
 
-    // it('Deve apagar o arquivo herois.json', async ()=>{
-    //     const expected = true
-    //     const resultado = await database.deletarArquivoJson()
-    //     deepEqual(resultado, expected)
-    // })
+    it('Deve apagar o arquivo herois.json', async ()=>{
+        const expected = true
+        const resultado = await database.deletarArquivoJson()
+        deepEqual(resultado, expected)
+    })
 })

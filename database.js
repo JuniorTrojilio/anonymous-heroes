@@ -75,7 +75,12 @@ class Database {
     }
 
     async listar(id) {
-        return (await this.obterDadosArquivo()).filter(item => item.id === id ? true : false)
+        if (!id && id !== 0){
+            return await this.obterDadosArquivo()
+        }else {
+            return (await this.obterDadosArquivo()).filter(item => item.id === id ? true : false)  
+        }
+        
     }
 }
 
