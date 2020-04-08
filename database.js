@@ -69,6 +69,10 @@ class Database {
         const indice = dados.findIndex(item => item.id === parseInt(id))
         if(indice === -1){
             throw Error('Este herói não existe')
+        }else if(!(novoHeroi.name === String)){
+            throw Error('Não foi passada a nova propriedade Nome do herói!')
+        }else if(!novoHeroi.power){
+            throw Error('Não foi passada a nova propriedade Poder do herói!')
         }
 
         dados.splice(indice, 1,novoHeroi)

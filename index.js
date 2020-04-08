@@ -12,6 +12,7 @@ async function main() {
         .option('-c --cadastrar', 'Cadastrar um herói')
         .option('-l --listar', 'Listar herói por id, * se value === ""')
         .option('-r --remover', 'remove um herói pelo ID')
+        .option('-a --atualizar [value]', 'atualiza um herói pelo ID')
         .parse(process.argv)
 
     const heroi = new Heroi(commander)
@@ -24,7 +25,15 @@ async function main() {
         if (commander.cadastrar) {
             const resultado = await database.cadastrar(heroi)
             if (resultado === 0 || resultado > 0) {
-                console.log(chalk.green(`🦸‍♂️ Herói cadastrado com sucesso! ID:${resultado}`))
+                console.log(`
+                █████████
+                █▄█████▄█
+                █▼▼▼▼▼
+                █         Herói cadastrado com sucesso! ID:${chalk.green(resultado)}               
+                █▲▲▲▲▲
+                █████████
+                ██ ██
+                `)
             } else {
                 console.error(chalk.red('Herói não cadastrado!'))
             }
@@ -48,6 +57,12 @@ async function main() {
             } else {
                 console.log(chalk.blue(`O Herói com id: ${chalk.green(heroi.id)}, foi removido com sucesso!`))
             }
+        }
+
+        if(commander.atualizar){
+            console.log(heroi.name)
+            // const resultado = await database.atualizarHeroi(heroi.id, heroi)
+            // console.log(resultado)
         }
     } catch (error) {
         console.error(chalk.red(`Ops, ${error.message}!`))
