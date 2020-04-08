@@ -9,11 +9,11 @@ async function main() {
         .option('-p --power [value]', 'Poder do herói')
         .option('-i --id [value]', 'ID do herói')
         .option('-c --cadastrar', 'Cadastrar um herói')
-        .option('-l --listar [value]', 'Listar herói por id, * se value === ""')
-        .option('-r --remover [value]', 'remove um herói pelo ID')
+        .option('-l --listar', 'Listar herói por id, * se value === ""')
+        .option('-r --remover', 'remove um herói pelo ID')
         .parse(process.argv)
 
-    const heroi = new Heroi(commander)
+        const heroi = new Heroi(commander)
 
     try {
         if (!await database.arquivoExists()){
@@ -23,20 +23,21 @@ async function main() {
         if (commander.cadastrar) {
             const resultado = await database.cadastrar(heroi)
             if (resultado === 0 || resultado > 0){
-            console.log(`Herói cadastrado com sucesso! ${ resultado }`)
+            console.log(`🦸‍♂️ Herói cadastrado com sucesso! ID:${ resultado }`)
             }else{
                 console.error('Herói não cadastrado!')
             }
         }
 
         if(commander.listar){
-           const resultado = await database.listar() 
+           const resultado = await database.listar(heroi.id) 
            console.log(resultado)
            return;
         }
 
         if(commander.remover){
-            const resultado = await database.removerHeroiPorId()
+            console.log(heroi)
+            const resultado = await database.removerHeroiPorId(heroi.id)
             if(!resultado){
                 console.error('Não foi possível remover o herói.')
                 return

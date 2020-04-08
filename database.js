@@ -48,6 +48,7 @@ class Database {
     }
 
     async removerHeroiPorId(id){
+        id = parseInt(id)
         const dados = await this.obterDadosArquivo()
         const indice = dados.findIndex(item => item.id === parseInt(id))
         if(indice === -1){
@@ -63,6 +64,7 @@ class Database {
     }
 
     async atualizarHeroi(id, novoHeroi){
+        id = parseInt(id)
         const dados = await this.obterDadosArquivo()
         const indice = dados.findIndex(item => item.id === parseInt(id))
         if(indice === -1){
@@ -75,6 +77,7 @@ class Database {
     }
 
     async listar(id) {
+        id = parseInt(id)
         if (!id && id !== 0){
             return await this.obterDadosArquivo()
         }else {
