@@ -30,9 +30,9 @@ async function main() {
                 █▄█████▄█
                 █   ▼▼
                 █           Herói cadastrado na Sociedade com sucesso!               
-                █   ▲▲      e tem o ID: ${chalk.green(resultado)}
-                █████████   se chama: ${chalk.green('não vou contar é anônimo')}
-                ██ ██       e tem o poder: ${chalk.green(heroi.power)}
+                █   ▲▲      ID: ${chalk.green(resultado)}
+                █████████   Nome: ${chalk.green('não vou contar é anônimo')}
+                ██ ██       Poder: ${chalk.green(heroi.power)}
                 `))
             } else {
                 console.error(chalk.red('Herói não cadastrado!'))

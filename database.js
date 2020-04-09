@@ -88,7 +88,6 @@ class Database {
     }
 
     async listar(id) {
-        id = parseInt(id)
         if (id === 0){
             return await this.obterDadosArquivo(false)
         }else {
