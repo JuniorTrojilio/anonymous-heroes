@@ -64,7 +64,7 @@ async function main() {
                 console.log(chalk.red(`[Não localizado nenhum herói com o id : ${heroi.id}]`))
                 return;
             } else {
-                console.log(chalk.blue(`
+                console.log(chalk.yellowBright(`
                     ███   ███
                     █▄█   █▄█
                     ███▼▼▼███  O Herói com id: ${chalk.redBright(heroi.id)}, 
