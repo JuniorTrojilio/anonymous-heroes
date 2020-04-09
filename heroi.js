@@ -1,7 +1,7 @@
 class Heroi {
-    constructor({ name, power, id }){
+    constructor({ nome, power, id }){
         if(!id && id !== 0) id = 0
-        this.name = name,
+        this.nome = nome,
         this.power = power,
         this.id = id
     }

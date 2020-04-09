@@ -6,7 +6,7 @@ const chalk = require('chalk');
 async function main() {
     commander
         .version('v0.0.1')
-        .option('-n --name [value]', 'Nome do herói')
+        .option('-n --nome [value]', 'Nome do herói')
         .option('-p --power [value]', 'Poder do herói')
         .option('-i --id [value]', 'ID do herói')
         .option('-c --cadastrar', 'Cadastrar um herói')
@@ -25,15 +25,15 @@ async function main() {
         if (commander.cadastrar) {
             const resultado = await database.cadastrar(heroi)
             if (resultado === 0 || resultado > 0) {
-                console.log(`
+                console.log(chalk.redBright(`
                 █████████
                 █▄█████▄█
                 █▼▼▼▼▼
-                █         Herói cadastrado com sucesso! ID:${chalk.green(resultado)}               
+                █         O Herói cadastrado na Sociedade com sucesso! e tem o ID:${chalk.green(resultado)}               
                 █▲▲▲▲▲
                 █████████
                 ██ ██
-                `)
+                `))
             } else {
                 console.error(chalk.red('Herói não cadastrado!'))
             }
@@ -41,6 +41,10 @@ async function main() {
 
         if (commander.listar) {
             const resultado = await database.listar(heroi.id)
+            if(heroi.id === true){
+                heroi.id = 0
+            }
+
             if (!resultado[0]) {
                 console.log(chalk.red(`[Não localizado nenhum herói com o id : ${chalk.green(heroi.id)}]`))
                 return;
@@ -50,19 +54,43 @@ async function main() {
         }
 
         if (commander.remover) {
+            if(heroi.id === true){
+                heroi.id = 0
+            }
+
             const resultado = await database.removerHeroiPorId(heroi.id)
             if (!resultado) {
                 console.log(chalk.red(`[Não localizado nenhum herói com o id : ${heroi.id}]`))
                 return;
             } else {
-                console.log(chalk.blue(`O Herói com id: ${chalk.green(heroi.id)}, foi removido com sucesso!`))
+                console.log(chalk.blue(`
+                    ███   ███
+                    █▄█   █▄█
+                    ███▼▼▼███  O Herói com id: ${chalk.redBright(heroi.id)}, 
+                    █▲▲▲▲▲▲▲█  foi removido da sociedade com sucesso!
+                    ███   ███  
+                    ███   ███
+                `))
             }
         }
 
         if(commander.atualizar){
-            console.log(heroi.name)
-            // const resultado = await database.atualizarHeroi(heroi.id, heroi)
-            // console.log(resultado)
+            if(heroi.id === true){
+                heroi.id = 0
+            }
+            const resultado = await database.atualizarHeroi(heroi.id, heroi)
+
+            if(!resultado[0]){
+                console.log(chalk.blueBright(`
+                █████████
+                █▄█████▄█
+                █▼▼▼▼▼▼▼█
+                █▲▲▲▲▲▲▲█  Herói Atualizado com sucesso! ID:${chalk.green(resultado.id)}                               
+                ███ █ ███  Nome ${chalk.gray('a̶n̶ô̶n̶i̶m̶o̶')}: ${chalk.green(resultado.nome)} 
+                ██     ██  Poder: ${chalk.green(resultado.power)}
+                `))
+            }
+
         }
     } catch (error) {
         console.error(chalk.red(`Ops, ${error.message}!`))

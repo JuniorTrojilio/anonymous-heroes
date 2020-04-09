@@ -1,5 +1,4 @@
 const { readFileSync, writeFileSync, existsSync, unlinkSync } = require('fs')
-//const dataJson = require('./herois.json')
 
 class Database {
     constructor() {
@@ -29,6 +28,12 @@ class Database {
         const dados = (await this.obterDadosArquivo())
         let {id} = heroi
 
+        if(!heroi.nome){
+            throw Error('Não foi passada a nova propriedade Nome do herói!')
+        }else if(!heroi.power){
+            throw Error('Não foi passada a nova propriedade Poder do herói!')
+        }
+
         dados.forEach(element => {
             if (element.id === id){
                 id++
@@ -38,7 +43,7 @@ class Database {
         const novoId = id
         const heroiComId = {
             id : novoId,
-            name : heroi.name,
+            nome : heroi.nome,
             power : heroi.power
         }
 
@@ -69,7 +74,7 @@ class Database {
         const indice = dados.findIndex(item => item.id === parseInt(id))
         if(indice === -1){
             throw Error('Este herói não existe')
-        }else if(!(novoHeroi.name === String)){
+        }else if(!novoHeroi.nome){
             throw Error('Não foi passada a nova propriedade Nome do herói!')
         }else if(!novoHeroi.power){
             throw Error('Não foi passada a nova propriedade Poder do herói!')
