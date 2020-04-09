@@ -13,7 +13,7 @@
 <h3 align="center">🤔 What a hell is this?</h3>
 
 <p align="center">
-Durante meus estudos de TDD (test drive development) ficou um tanto quanto monôtomo escrever pequenos testes e depois executa-los, então juntamente com a ajuda do curso da [NodeBr](https://treinamento.nodebr.org/) desenvolvi esta pequena ferramenta CLI utilizando node, ela funciona como um crud básico cadastrando, alterando, excluindo ou listando "Heróis".
+Durante meus estudos de TDD (test drive development) ficou um tanto quanto monôtomo escrever pequenos testes e depois executa-los, então juntamente com a ajuda do curso da <a href="https://treinamento.nodebr.org/">NodeBr</a> desenvolvi esta pequena ferramenta CLI utilizando node, ela funciona como um crud básico cadastrando, alterando, excluindo ou listando "Heróis".
 </p>
 
 
