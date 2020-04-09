@@ -22,6 +22,7 @@ Durante meus estudos de TDD (test drive development) ficou um tanto quanto monô
 <p align="center"> 
   <a href="https://nodejs.org/pt-br/">Node</a> | 
   <a href="https://www.npmjs.com/package/commander">Commander</a> | 
+  <a href="https://mochajs.org/">Mocha</a> | 
   <a href="https://www.npmjs.com/package/chalk">Chalk</a> <br><br>
   
  <h3 align="center">💻 Como utilizar?</h3>
