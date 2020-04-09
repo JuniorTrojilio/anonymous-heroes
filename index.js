@@ -30,7 +30,7 @@ async function main() {
                 █▄█████▄█
                 █▼▼▼▼▼
                 █           O Herói cadastrado na Sociedade com sucesso!               
-                █▲▲▲▲▲      e tem o ID:${chalk.green(resultado)}
+                █▲▲▲▲▲      e tem o ID: ${chalk.green(resultado)}
                 █████████   se chama: ${chalk.green('não vou contar é anônimo')}
                 ██ ██       e tem o poder: ${chalk.green(heroi.power)}
                 `))
@@ -41,6 +41,7 @@ async function main() {
 
         if (commander.listar) {
             const resultado = await database.listar(heroi.id)
+            
             if(heroi.id === true){
                 heroi.id = 0
             }

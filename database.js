@@ -40,6 +40,8 @@ class Database {
             }
         })
 
+        if(id === 0) {id++}
+
         const novoId = id
         const heroiComId = {
             id : novoId,
@@ -87,8 +89,8 @@ class Database {
 
     async listar(id) {
         id = parseInt(id)
-        if (!id && id !== 0){
-            return await this.obterDadosArquivo()
+        if (id === 0){
+            return await this.obterDadosArquivo(false)
         }else {
             return (await this.obterDadosArquivo()).filter(item => item.id === id ? true : false)  
         }

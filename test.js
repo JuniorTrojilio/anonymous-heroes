@@ -1,12 +1,12 @@
 const { deepEqual, notDeepEqual } = require('assert')
 const database = require('./database')
 const DEFAULT_ITEM_CADASTRAR = {
-    id : 0,
+    id : 1,
     nome : 'Flash',
     power : 'Speed'
 }
 const DEFAULT_ITEM_ATUALIZAR = {
-    id : 0,
+    id : 1,
     nome : 'Batman',
     power : 'Dinheiro' 
 }
